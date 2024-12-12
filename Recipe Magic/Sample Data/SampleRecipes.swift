@@ -7,6 +7,8 @@
 
 import Foundation
 
+// this is a nice recipe and I served my mission in Germany so I had these a lot but not as much when they were homemade
+// I'll try this recipe one day
 let sampleRecipes = [
     Recipe(
         title: "Pfeffernüsse",

@@ -3,7 +3,7 @@
 //  Recipe Magic
 //
 //  Created by Matthew Cooper on 12/10/24.
-//
+//  Tweaked from Prof. Liddle's solution
 
 import SwiftUI
 import SwiftData
@@ -14,14 +14,14 @@ struct RecipeCatalogView: View {
 
     // MARK: - Properties
 
-    @Environment(RecipeViewModel.self) var viewModel
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(RecipeViewModel.self) var viewModel // Our ViewModel is used via the Environment macro
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass // Track and adjust the device width for good ui
+    @Environment(\.verticalSizeClass) var verticalSizeClass // Track and adjust the device width for good ui
 
     @State private var columnVisibility = NavigationSplitViewVisibility.doubleColumn
     @State private var deviceContext = DeviceContext.other
     @State private var isEditing = false
-    @State private var searchText = ""
+    @State private var searchText = "" // So that we can filter the recipes dynamically
 
     // MARK: - Main body
 
@@ -211,6 +211,7 @@ struct RecipeCatalogView: View {
     }
 }
 
+// Preview was problematic
 //#Preview {
 //    ModelContainerPreview(ModelContainer.sample) {
 //        RecipeCatalogView()

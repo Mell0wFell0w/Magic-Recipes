@@ -15,8 +15,8 @@ final class Ingredient {
     var qualifier: String?
     var sequence: Int
     var unit: String
-
-    // These have to be in the correct order for the extension
+    
+    // These have to be in the correct order for the extension and I should probably change it so that sequence is first but it is late and I don't want to refactor all that right now
     init(name: String, quantity: Decimal, qualifier: String? = nil, sequence: Int, unit: String) {
         self.name = name
         self.qualifier = qualifier
@@ -30,12 +30,12 @@ extension Ingredient: Sequenced {
 }
 
 extension Ingredient {
-    // These are the fields in the ingredient that we'll use for search.
+    // These are the fields in the ingredient that we'll use for search. We don't need unit here imo
     var asSearchString: String {
         """
         \(qualifier ?? "") \(quantity) \(name)
         """
-        .lowercased()
+            .lowercased()
     }
 }
 

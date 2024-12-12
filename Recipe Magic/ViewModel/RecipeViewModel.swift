@@ -118,11 +118,10 @@ class RecipeViewModel {
         duration: String, servings: String, calories: String, notes: String,
         isFavorite: Bool, instructions: [InstructionsStruct]
     ) {
-        // edit the recipe
         recipe.title = title
         recipe.subtitle = subtitle
         recipe.summary = summary
-        recipe.course = course.specified
+        recipe.course = course.specified // To remove the placeholder text before storing it
         recipe.cuisine = cuisine.specified
         recipe.difficultyLevel = difficultyLevel.specified
         recipe.author = author.specified
@@ -133,7 +132,7 @@ class RecipeViewModel {
         recipe.isFavorite = isFavorite
 
         recipe.instructions.forEach { instructions in
-            deleteSection(instructions)
+            deleteSection(instructions) // Remove existing instructions to make room for the new ones
         }
 
         insertSections(instructions, into: recipe)
@@ -246,9 +245,8 @@ class RecipeViewModel {
     }
 
     private func fetchData() {
-        // I saw some transient fetch issues where relaunching the app cleared
-        // them up.  This call is in response to those issues, and seems to
-        // clear up the issue.  I think it's a SwiftData autosave bug.
+        // The SwiftData Autosave bug is annoying
+        // .map was also giving me some issues but we can get around that
         try? modelContext.save()
 
         fetchRecipes()

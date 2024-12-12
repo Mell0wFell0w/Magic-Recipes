@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-//Why put final here?
+//final class is used for performance for the compiler, indicates that we won't use subclassing or inheritance
 final class Recipe {
     var title: String
     var subtitle: String
@@ -21,12 +21,25 @@ final class Recipe {
     var duration: String
     var servings: String
     var calories: String
-    @Relationship(deleteRule: .cascade)
+    @Relationship(deleteRule: .cascade) // So that if the recipe is deleted then the instructions are also deleted
     var instructions: [Instructions]
     var notes: String
     var isFavorite: Bool
-
-    init(title: String, subtitle: String, summary: String, course: String, cuisine: String, difficultyLevel: String, author: String, duration: String, servings: String, calories: String, instructions: [Instructions], notes: String, isFavorite: Bool = false) {
+    // Initialize a recipe instance with all the same variables in the same order
+    init(title: String,
+         subtitle: String,
+         summary: String,
+         course: String,
+         cuisine: String,
+         difficultyLevel: String,
+         author: String,
+         duration: String,
+         servings: String,
+         calories: String,
+         instructions: [Instructions],
+         notes: String,
+         isFavorite: Bool = false) //isFavorite needs to be false by default
+    {
         self.title = title
         self.subtitle = subtitle
         self.summary = summary
@@ -42,17 +55,16 @@ final class Recipe {
         self.isFavorite = isFavorite
     }
 }
-
+// By extending we can add computed properties and helper methods that don't require stored properties
 extension Recipe {
-    // These are the fields we'll search when the user types in the .searchable
-    // text field (to filter the list according to the user's search terms).
+    // We can search from these
     var asSearchString: String {
         var result = "\(title) \(subtitle) \(summary) \(course) \(cuisine) \(difficultyLevel) \(author) \(duration) \(servings) \(calories) \(notes) "
-
+        //Individualize the serach strings so we can search each instruction from the array
         instructions.forEach {
             result += $0.asSearchString
         }
-
+        // Important so that we don't have to worry about case sensitivity when searching
         return result.lowercased()
     }
 }

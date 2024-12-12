@@ -158,16 +158,16 @@ struct RecipeView: View {
     }
 }
 
-#Preview {
-    ModelContainerPreview(ModelContainer.sample) {
-        NavigationStack {
-            GeometryReader { geometry in
-                ScrollView {
-                    RecipeView(recipe: sampleRecipes[0], size: geometry.size)
-                        .padding()
-                }
-            }
-        }
-    }
-}
-
+// Preview was problematic
+//#Preview {
+//    ModelContainerPreview(ModelContainer.sample) {
+//        NavigationStack {
+//            GeometryReader { geometry in
+//                ScrollView {
+//                    RecipeView(recipe: sampleRecipes[0], size: geometry.size)
+//                        .padding()
+//                }
+//            }
+//        }
+//    }
+//}

@@ -281,7 +281,7 @@ struct RecipeEditor: View {
     }
 }
 
-
+// The preview was giving me issues so I got rid of it for now
 //#Preview("New Recipe") {
 //    @Previewable @State var isPresented = true
 //
