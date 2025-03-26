@@ -21,6 +21,7 @@ struct Recipe_MagicApp: App {
         .environment(viewModel)
     }
 
+    // This error message is crucial. I have had to reinstall many times
     init() {
         do {
             container = try ModelContainer(for: Recipe.self)
